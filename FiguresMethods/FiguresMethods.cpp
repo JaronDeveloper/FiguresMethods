@@ -5,6 +5,7 @@ class  Figures
 public:
 	std::string NameFigures;
 
+	/*
 	Figures() {}
 	Figures(int sizeArray,int sizeSide[],int sizeAngles[],char abcSide[], char abcAngles[]) {
 		for (int i = 0;i < sizeArray;i++) {
@@ -18,6 +19,11 @@ public:
 		}
 		std::cout << std::endl;
 	}
+	*/
+
+	virtual void info() {
+		
+	}
 
 	virtual std :: string getType() {
 		return NameFigures;
@@ -25,29 +31,36 @@ public:
 };
 
 void print_info(Figures* f) {
-	std :: cout << f->getType() << std :: endl;
+	std :: cout << f->getType() << std :: endl;	
+	f->info();
 }
-
-
 
 class  Triangle : public Figures
 {
 public:	
+	/*
 	static const int sizeArray = 3;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	std::string NameFigures= "Треугольник:";
-	
+
+	Triangle() {}
+	Triangle(int a,int b,int c,int A,int B,int C) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << std::endl;
+	}
+
 	int a = 10,b = 20,c = 30;//стороны
 	int	A = 50,B = 60,C = 70;//углы
-	//int AA, BB, CC;	
-	
-	void info(){//int a,int b,int c,int A,int B,int C) {
+	//int AA, BB, CC;		
+
+	void info()override {//int a,int b,int c,int A,int B,int C) {
 		//AA = A;
 		//BB = B;
 		//CC = C;
        //sizeArray = 3;
+		/*
 	    siDe[sizeArray], Angles[sizeArray];
 	    abcSide[sizeArray],abcAngles[sizeArray];	
 	
@@ -66,10 +79,10 @@ public:
 		abcAngles[0] = 'A';
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
-
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
-
-		Figures(sizeArray,siDe, Angles,abcSide,abcAngles);
+		*/
+		std::cout << "Количество сторон: " << 3 << std::endl;
+		Triangle(10,20,30,50,60,70);
+	//	Figures(sizeArray,siDe, Angles,abcSide,abcAngles);
 		std::cout << std::endl;
 	}
 	//Triangle():NameFigures("Треугольник") {}
@@ -79,20 +92,29 @@ public:
 	}
 };
 
-class Quadrilateral : public Figures {
+class Quadrilateral : public Triangle {
 public:
 	std::string NameFigures = "Четырехугольник:";
 
+	/*
 	static const int sizeArray = 4;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
+	*/
 
 	int a = 10, b = 20, c = 30, d = 40;
 	int A = 50, B = 60, C = 70, D = 80;
+
+	Quadrilateral() {}
+	Quadrilateral(int a, int b, int c, int d,int A, int B, int C,int D) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << " d=" << d << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << " D=" << D << std::endl;
+	}
+
 	//int AA, BB, CC, DD;
 	
-	void info(){//int a,int b,int c,int d,int A,int B,int C,int D) {
-
+	void info()override{//int a,int b,int c,int d,int A,int B,int C,int D) {
+		/*
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -115,10 +137,11 @@ public:
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
 		abcAngles[3] = 'D';
+		*/
+		std::cout << "Количество сторон: " << 4 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
-
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		Quadrilateral(10,20,30,40,50,60,70,80);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}	
 
@@ -127,21 +150,29 @@ public:
 	}
 };
 
-class RightRriangle : public Figures {
+class RightRriangle : public Triangle {
 public:
 	std::string NameFigures = "Прямоугольный треугольник:";
 
+	/*
 	static const int sizeArray = 3;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
+	*/
 
     int a = 10, b = 20, c = 30;
 	int A = 50, B = 60, C = 90;
 	//int CC;
 
-	void info(){//int a,int b,int c,int A,int B,int C) {
-	//	CC = C;
+	RightRriangle(){}
+	RightRriangle(int a, int b, int c, int A, int B, int C) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << std::endl;
+	}
 
+	void info()override{//int a,int b,int c,int A,int B,int C) {
+	//	CC = C;
+		/*
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -160,10 +191,12 @@ public:
 		abcAngles[0] = 'A';
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';		
+		*/
+		std::cout << "Количество сторон: " << 3 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
+		RightRriangle(10, 20, 30, 50, 60, 90);
 
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 
@@ -172,28 +205,35 @@ public:
 	}
 };
 
-class IsoscelesTriangle : public Figures {
+class IsoscelesTriangle : public Triangle {
 public:
 	
 	int	a = 10, b = 20, c = 10;
-	int	A = 50, B = 60, C = 50;			
+	int	A = 50, B = 60, C = 50;	
+
+	IsoscelesTriangle(){}
+	IsoscelesTriangle(int a, int b, int c, int A, int B, int C) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << std::endl;
+	}
 	
 	std::string NameFigures = "Равнобедренный треугольник:";
 
+	/*
 	static const int sizeArray = 3;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	//int aa, cc;
 	//int AA,CC;
 
-	void info(){//int a, int b, int c, int A, int B, int C) {
+	void info()override{//int a, int b, int c, int A, int B, int C) {
 		/*
 		CC = C;
 		AA = A;
 		aa = a;
 		cc = c;		
-		*/
+	
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -212,10 +252,12 @@ public:
 		abcAngles[0] = 'A';
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
+			*/
+		std::cout << "Количество сторон: " << 3 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
+		IsoscelesTriangle(10, 20, 10, 50, 60, 50);
 
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 
@@ -225,26 +267,33 @@ public:
 
 };
 
-class EquilateralTriangle : public Figures {
+class EquilateralTriangle : public Triangle {
 public:
 	
 	int	a = 30, b = 30, c = 30;
-	int	A = 60, B = 60, C = 60;		
+	int	A = 60, B = 60, C = 60;
+
+	EquilateralTriangle(){}
+	EquilateralTriangle(int a, int b, int c, int A, int B, int C) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << std::endl;
+	}
 	
 	std::string NameFigures = "Равносторонний треугольник:";
 
+	/*
 	static const int sizeArray = 3;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	//int CC,AA,BB;
 
-	void info(){//int a, int b, int c, int A, int B, int C) {
+	void info()override {//int a, int b, int c, int A, int B, int C) {
 		/*
 		CC = C;
 		AA = A;
 		BB = B;
-		*/
+	
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -263,10 +312,12 @@ public:
 		abcAngles[0] = 'A';
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
+			*/
+		std::cout << "Количество сторон: " << 3 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
+		EquilateralTriangle(30, 30, 30, 60, 60, 60);
 
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 	std::string getType() override {
@@ -274,27 +325,34 @@ public:
 	}
 };
 
-class Rectangle : public Figures {
+class Rectangle : public Triangle {
 public:
 	
 	int	a = 10, b = 20, c = 10, d = 20;
 	int	A = 90, B = 90, C = 90, D = 90;	
 	
-	std::string NameFigures = "Прямоугольник:";
+	Rectangle(){}
+	Rectangle(int a, int b, int c, int d, int A, int B, int C, int D) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << " d=" << d << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << " D=" << D << std::endl;
+	}
 
+	std::string NameFigures = "Прямоугольник:";
+	
+	/*
 	static const int sizeArray = 4;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	//int AA, BB, CC, DD;
 
-	void info(){//int a, int b, int c, int d, int A, int B, int C, int D) {
+	void info()override{//int a, int b, int c, int d, int A, int B, int C, int D) {
 		/*
 		AA = A;
 		BB = B;
 		CC = C;
 		DD = D;
-		*/
+		
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -317,10 +375,12 @@ public:
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
 		abcAngles[3] = 'D';
+		*/
+		std::cout << "Количество сторон: " << 4 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
+		Rectangle(10, 20, 10, 20, 90, 90, 90, 90);
 
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 
@@ -329,7 +389,7 @@ public:
 	}
 };
 
-class Square : public Figures {
+class Square : public Triangle {
 public:
 	
 	int	a = 20, b = 20, c = 20, d = 20;
@@ -337,19 +397,25 @@ public:
 	
 	std::string NameFigures = "Квадрат:";
 
-	static const int sizeArray = 4;
+	/*	static const int sizeArray = 4;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
+	*/
 
+	Square(){}
+	Square(int a, int b, int c, int d, int A, int B, int C, int D) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << " d=" << d << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << " D=" << D << std::endl;
+	}
 	//int AA, BB, CC, DD;
 	
-	void info(){//int a, int b, int c, int d, int A, int B, int C, int D) {
+	void info()override {//int a, int b, int c, int d, int A, int B, int C, int D) {
 		/*
 		AA = A;
 		BB = B;
 		CC = C;
 		DD = D;
-		*/
+		
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -372,10 +438,11 @@ public:
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
 		abcAngles[3] = 'D';
+		*/
+		std::cout << "Количество сторон: " << 4 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
-
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		Square(20, 20, 20, 20, 90, 90, 90, 90);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}	
 
@@ -384,7 +451,7 @@ public:
 	}
 };
 
-class Parallelogram : public Figures {
+class Parallelogram : public Triangle {
 public:
 	
 	int	a = 20, b = 30, c = 20, d = 30;
@@ -392,19 +459,25 @@ public:
 	
 	std::string NameFigures = "Параллелограмм:";
 
+	Parallelogram(){}
+	Parallelogram(int a, int b, int c, int d, int A, int B, int C, int D) {
+		std::cout << "a=" << a << " b=" << b << " c=" << c << " d=" << d << std::endl;
+		std::cout << "A=" << A << " B=" << B << " C=" << C << " D=" << D << std::endl;
+	}
+	/*
 	static const int sizeArray = 4;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	//int AA, BB, CC, DD;
 
-	void info(){//int a, int b, int c, int d, int A, int B, int C, int D) {
+	void info()override {//int a, int b, int c, int d, int A, int B, int C, int D) {
 		/*
 		AA = A;
 		BB = B;
 		CC = C;
 		DD = D;
-		*/
+		
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -427,10 +500,11 @@ public:
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
 		abcAngles[3] = 'D';
+		*/
+		std::cout << "Количество сторон: " << 4 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
-
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		Parallelogram(20, 30, 20, 30, 30, 40, 30, 40);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 
@@ -439,7 +513,7 @@ public:
 	}
 };
 
-class Rhombus : public Figures {
+class Rhombus : public Triangle {
 public:
 	
 	int	a = 30, b = 30, c = 30, d = 30;
@@ -447,19 +521,26 @@ public:
 	
 	std::string NameFigures = "Ромб:";
 
+	Rhombus(){}
+	Rhombus(int a, int b, int c, int d, int A, int B, int C, int D) {
+		std::cout << "a=" << a << "b=" << b << "c=" << c << "d=" << d << std::endl;
+		std::cout << "A=" << A << "B=" << B << "C=" << C << "D=" << D << std::endl;
+	}
+
+	/*
 	static const int sizeArray = 4;
 	int siDe[sizeArray], Angles[sizeArray];
 	char abcSide[sizeArray], abcAngles[sizeArray];
-
+	*/
 	//int AA, BB, CC, DD;
 
-	void info(){//int a, int b, int c, int d, int A, int B, int C, int D) {
+	void info()override {//int a, int b, int c, int d, int A, int B, int C, int D) {
 		/*
 		AA = A;
 		BB = B;
 		CC = C;
 		DD = D;
-		*/
+		
 		siDe[sizeArray], Angles[sizeArray];
 		abcSide[sizeArray], abcAngles[sizeArray];
 
@@ -482,10 +563,11 @@ public:
 		abcAngles[1] = 'B';
 		abcAngles[2] = 'C';
 		abcAngles[3] = 'D';
+		*/
+		std::cout << "Количество сторон: " << 4 << std::endl;
 
-		std::cout << "Количество сторон: " << sizeArray << std::endl;
-
-		Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
+		Rhombus(30, 30, 30, 30, 30, 40, 30, 40);
+		//Figures(sizeArray, siDe, Angles, abcSide, abcAngles);
 		std::cout << std::endl;
 	}
 
@@ -500,50 +582,49 @@ int main() {
 
 	Figures* triangle = new Triangle();
 	print_info(triangle);
-	Triangle t;
-	t.info();//10, 20, 30, 50, 60, 70);
-
-	Figures* quadrilateral = new Quadrilateral();
+	//Triangle t;
+	//t.info();//10, 20, 30, 50, 60, 70);
+	delete triangle;
+	Figures* quadrilateral =new Quadrilateral();		
 	print_info(quadrilateral);
-	Quadrilateral q;	
-	q.info();
-	
-
+	//Quadrilateral q;	
+	//q.info();	
+	delete quadrilateral;
 	Figures* rightRriangle = new RightRriangle();
 	print_info(rightRriangle);
-	RightRriangle r;
-	r.info();
-	
+	//RightRriangle r;
+	//r.info();
+	delete rightRriangle;
 	Figures* isoscelesTriangle = new IsoscelesTriangle();
 	print_info(isoscelesTriangle);
-	IsoscelesTriangle i;	
-	i.info();
-
+	//IsoscelesTriangle i;	
+	//i.info();
+	delete isoscelesTriangle;
 	Figures* equilateralTriangle = new EquilateralTriangle();
 	print_info(equilateralTriangle);
-	EquilateralTriangle e;	
-	e.info();
-	
+	//EquilateralTriangle e;	
+	//e.info();
+	delete equilateralTriangle;
 	Figures* reectangle = new Rectangle();
 	print_info(reectangle);
-	Rectangle re;	
-	re.info();
-
+	//Rectangle re;	
+	//re.info();
+	delete reectangle;
 	Figures* square = new Square();
 	print_info(square);
-	Square s;	
-	s.info();
-
+	//Square s;	
+	//s.info();
+	delete square;
 	Figures* parallelogram = new Parallelogram();
 	print_info(parallelogram);
-	Parallelogram p;	
-	p.info();
-
+	//Parallelogram p;	
+	//p.info();
+	delete parallelogram;
 	Figures* rhombus = new Rhombus();
 	print_info(rhombus);
-	Rhombus rh;	
-	rh.info();
-
+	//Rhombus rh;	
+	//rh.info();
+	delete rhombus;
 	/*
     UnknownFigures unknownFigures;
     Figures* f= &unknownFigures;
