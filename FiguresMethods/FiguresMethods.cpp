@@ -3,34 +3,28 @@
 class  Figures
 {
 public:
-	int a, b, c, d;//стороны
-	int	A, B, C, D;//углы
-	int number;//количество сторон
+	std::string NameFigures;	
 
-	std::string NameFigures = "Фигура:";	
+	virtual void info() {}
 
 	virtual std::string getType() {
 		return NameFigures;
 	}
 };
 
+//Медод для вывода информации о фигурах
 void print_info(Figures* f) {
 	std::cout << f->getType() << std::endl;
-	std::cout << "Количество сторон:" << f->number << std::endl;
-	if (f->number == 4) {
-		std::cout << "Стороны: " << "a=" << f->a << " " << "b=" << f->b << " " << "c=" << f->c << " " << "d=" << f->d << std::endl;
-		std::cout << "Углы: " << "A=" << f->A << " " << "B=" << f->B << " " << "C=" << f->C << " " << "D=" << f->D << std::endl;
-	}
-	if (f->number == 3) {
-		std::cout << "Стороны: " << "a=" << f->a << " " << "b=" << f->b << " " << "c=" << f->c << std::endl;
-		std::cout << "Углы: " << "A=" << f->A << " " << "B=" << f->B << " " << "C=" << f->C << std::endl;
-	}
+	f->info();	
 	std::cout << std::endl;
 }
 
 class  Triangle : public Figures
 {
 public:
+	int a, b, c;//Стороны
+	int	A, B, C;//Углы
+
 	std::string NameFigures = "Треугольник:";
 
 	Triangle() {}
@@ -44,6 +38,11 @@ public:
 		this->C = C;
 	}
 
+   void info()override {
+	   std::cout << "Стороны: " << "a=" << this->a << " " << "b=" << this->b << " " << "c=" << this->c << std::endl;
+	   std::cout << "Углы: " << "A=" << this->A << " " << "B=" << this->B << " " << "C=" << this->C << std::endl;
+	}
+
 	std::string getType() override {
 		return NameFigures;
 	}
@@ -53,18 +52,7 @@ class RightTriangle : public Triangle {
 public:
 	std::string NameFigures = "Прямоугольный треугольник:";
 
-	//int a = 10, b = 20, c = 30;
-	//int A = 50, B = 60, C = 90;
-
-	RightTriangle(int a, int b, int c, int A, int B) :Triangle(a, b, c, A, B, 90) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
-
-		this->A = A;
-		this->B = B;
-		//this->C = 90;
-	}
+	RightTriangle(int a, int b, int c, int A, int B) :Triangle(a, b, c, A, B, 90) {}
 
 	std::string getType() override {
 		return NameFigures;
@@ -73,16 +61,10 @@ public:
 
 class IsoscelesTriangle : public Triangle {
 public:
-	//int	a = 10, b = 20, c = 10;
-	//int	A = 50, B = 60, C = 50;
 
-	IsoscelesTriangle(int a, int b, int A, int B) :Triangle(a, b, c, A, B, C) {
-		this->a = a;
-		this->b = b;
+	IsoscelesTriangle(int a, int b, int A, int B) :Triangle(a, b, c, A, B, C) {		
 		this->c = a;
-
-		this->A = A;
-		this->B = B;
+		
 		this->C = A;
 	}
 
@@ -97,20 +79,18 @@ class Quadrilateral : public Triangle {
 public:
 	std::string NameFigures = "Четырёхугольник:";
 
-	//int a = 10, b = 20, c = 30, d = 40;
-	//int A = 50, B = 60, C = 70, D = 80;
+	int d;
+	int D;
 
-	Quadrilateral() {}
-	Quadrilateral(int a, int b, int c, int d, int A, int B, int C, int D) :Triangle(a, b, c, A, B, C) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
+	Quadrilateral(int a, int b, int c, int d, int A, int B, int C, int D):Triangle(a, b, c, A, B, C) {
 		this->d = d;
 
-		this->A = A;
-		this->B = B;
-		this->C = C;
 		this->D = D;
+	}
+
+	void info()override {
+		std::cout << "Стороны: " << "a=" << this->a << " " << "b=" << this->b << " " << "c=" << this->c << " " << "d=" << this->d << std::endl;
+		std::cout << "Углы: " << "A=" << this->A << " " << "B=" << this->B << " " << "C=" << this->C << " " << "D=" << this->D << std::endl;
 	}
 
 	std::string getType() override {
@@ -120,16 +100,11 @@ public:
 
 class EquilateralTriangle : public Triangle {
 public:
-	//int	a = 30, b = 30, c = 30;
-	//int	A = 60, B = 60, C = 60;
 
-	EquilateralTriangle() {}
-	EquilateralTriangle(int a, int A) {
-		this->a = a;
+	EquilateralTriangle(int a, int A) :Triangle(a, b, c, A, B, C) {
 		this->b = a;
 		this->c = a;
-
-		this->A = A;
+		
 		this->B = A;
 		this->C = A;
 	}
@@ -141,20 +116,16 @@ public:
 	}
 };
 
-class Rectangle : public Triangle {
+class Rectangle : public Quadrilateral {
 public:
-	//int	a = 10, b = 20, c = 10, d = 20;
-	//int	A = 90, B = 90, C = 90, D = 90;
 
-	Rectangle() {}
-	Rectangle(int a, int b, int c, int d, int A, int B, int C, int D) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
+	Rectangle(int a ,int d, int A) :Quadrilateral(a, b, c, d, A, B, C, D) {
+		this->c = a;
+		this->b = d;
 
-		this->A = A;
-		this->B = B;
-		this->C = C;
+		this->B = A;
+		this->C = A;
+		this->D = A;
 	}
 
 	std::string NameFigures = "Прямоугольник:";
@@ -164,23 +135,18 @@ public:
 	}
 };
 
-class Square : public Triangle {
+class Square : public Quadrilateral {
 public:
-	//int	a = 20, b = 20, c = 20, d = 20;
-	//int	A = 90, B = 90, C = 90, D = 90;
-
 	std::string NameFigures = "Квадрат:";
 
-	Square() {}
-	Square(int a, int b, int c, int d, int A, int B, int C, int D) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
-
-		this->A = A;
-		this->B = B;
-		this->C = C;
-		this->C = D;
+	Square(int a, int A) :Quadrilateral(a, b, c, d, A, B, C, D) {
+		this->b = a;
+		this->c = a;
+		this->d = a;
+		
+		this->B = A;
+		this->C = A;
+		this->D = A;
 	}
 
 	std::string getType() override {
@@ -188,23 +154,16 @@ public:
 	}
 };
 
-class Parallelogram : public Triangle {
+class Parallelogram : public Quadrilateral {
 public:
-	//int	a = 20, b = 30, c = 20, d = 30;
-	//int	A = 30, B = 40, C = 30, D = 40;
-
 	std::string NameFigures = "Параллелограмм:";
-
-	Parallelogram() {}
-	Parallelogram(int a, int b, int c, int d, int A, int B, int C, int D) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
-
-		this->A = A;
-		this->B = B;
-		this->C = C;
-		this->C = D;
+	
+	Parallelogram(int a, int d, int A, int B) :Quadrilateral(a, b, c, d, A, B, C, D) {		
+		this->b = d;
+		this->c = a;		
+		
+		this->D = B;
+		this->C = A;
 	}
 
 	std::string getType() override {
@@ -212,23 +171,17 @@ public:
 	}
 };
 
-class Rhombus : public Triangle {
+class Rhombus : public Quadrilateral {
 public:
-	//int	a = 30, b = 30, c = 30, d = 30;
-	//int	A = 30, B = 40, C = 30, D = 40;
-
 	std::string NameFigures = "Ромб:";
 
-	Rhombus() {}
-	Rhombus(int a, int b, int c, int d, int A, int B, int C, int D) {
-		this->a = a;
-		this->b = b;
-		this->c = c;
+	Rhombus(int a, int A, int B) :Quadrilateral(a, b, c, d, A, B, C, D) {
+		this->b = a;
+		this->c = a;
+		this->d = a;
 
-		this->A = A;
-		this->B = B;
-		this->C = C;
-		this->C = D;
+		this->D = B;
+		this->C = A;
 	}
 
 	std::string getType() override {
@@ -240,29 +193,40 @@ int main() {
 	setlocale(LC_ALL, "Russian");
 
 	Figures* triangle = new Triangle(10, 20, 30, 50, 60, 70);
-	triangle->number = 3;
 	print_info(triangle);
 	delete triangle;
 
 	Figures* rightRriangle = new RightTriangle(10, 20, 30, 50, 60);
-	rightRriangle->number = 3;
 	print_info(rightRriangle);
 	delete rightRriangle;
 
 	Figures* isoscelesTriangle = new IsoscelesTriangle(10, 20, 50, 60);
-	isoscelesTriangle->number = 3;
 	print_info(isoscelesTriangle);
 	delete isoscelesTriangle;
 
 	Figures* equilateralTriangle = new EquilateralTriangle(30, 60);
-	equilateralTriangle->number = 3;
 	print_info(equilateralTriangle);
 	delete equilateralTriangle;
 
 	Figures* quadrilateral = new Quadrilateral(10, 20, 30, 40, 50, 60, 70, 80);
-	quadrilateral->number = 4;
 	print_info(quadrilateral);
 	delete quadrilateral;
+
+	Figures* rectangle = new Rectangle(10,20, 90);
+	print_info(rectangle);
+	delete rectangle;
+
+	Figures* square = new Square(20,90);
+	print_info(square);
+	delete square;
+
+	Figures* parallelogram = new Parallelogram(20, 30, 30, 40);
+	print_info(parallelogram);
+	delete parallelogram;
+
+	Figures* rhombus = new Rhombus(30, 30, 40);
+	print_info(rhombus);
+	delete rhombus;
 
 	return 0;
 }
